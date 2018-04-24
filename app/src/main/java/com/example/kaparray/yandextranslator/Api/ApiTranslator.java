@@ -1,6 +1,6 @@
-package com.example.kaparray.yandextranslator;
+package com.example.kaparray.yandextranslator.Api;
 
-import java.util.List;
+import com.example.kaparray.yandextranslator.Data.Translation;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

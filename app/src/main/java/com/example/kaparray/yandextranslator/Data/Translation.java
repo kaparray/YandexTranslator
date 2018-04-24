@@ -1,4 +1,4 @@
-package com.example.kaparray.yandextranslator;
+package com.example.kaparray.yandextranslator.Data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
