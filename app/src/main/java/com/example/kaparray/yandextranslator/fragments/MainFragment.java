@@ -42,7 +42,7 @@ public class MainFragment extends Fragment{
     TextView textFor, textIn;
     ImageView img_reverse;
     Animation anim;
-    String langTo = "английский", langIn = "русский", lang;
+    String langTo, langIn , lang;
 
 
     View rootView;
@@ -61,7 +61,7 @@ public class MainFragment extends Fragment{
         textFor = rootView.findViewById(R.id.textFor);
         textIn = rootView.findViewById(R.id.textIn);
         img_reverse = rootView.findViewById(R.id.img_reverse);
-
+        final EditText trText = rootView.findViewById(R.id.tr_text);
 
 
         SharedPreferences preferences = getActivity().getSharedPreferences("lang1",MODE_PRIVATE);
@@ -70,9 +70,20 @@ public class MainFragment extends Fragment{
         SharedPreferences preferences1 = getActivity().getSharedPreferences("lang2",MODE_PRIVATE);
         langIn = preferences1.getString("LANG2"," ");
 
+        Log.d("0000", langIn + "   " + langTo);
+
+        if(langIn.equals(" ")) {
+            langIn = "русский";
+        }
+
+
+        if(langTo.equals(" ")){
+            langTo = "английский";
+        }
 
         textFor.setText(langTo);
         textIn.setText(langIn);
+
 
 
         anim = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_animaton);
@@ -80,6 +91,8 @@ public class MainFragment extends Fragment{
         img_reverse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                EditText text = rootView.findViewById(R.id.good);
                 img_reverse.startAnimation(anim);
                 String lang;
                 lang = langIn;
@@ -87,6 +100,13 @@ public class MainFragment extends Fragment{
                 langTo = lang;
                 textFor.setText(langTo);
                 textIn.setText(langIn);
+
+
+                if(trText.getText() + "" != "") {
+                    text.setText("...");
+                    translate(trText.getText() + "", language(langTo) + "-" + language(langIn));
+                }
+
             }
         });
 
@@ -127,7 +147,6 @@ public class MainFragment extends Fragment{
             }
         });
 
-        final EditText trText = rootView.findViewById(R.id.tr_text);
 
 
 
